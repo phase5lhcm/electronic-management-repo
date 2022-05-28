@@ -18,7 +18,6 @@ public class PatientConfig {
                     "Sandra",
                     "4444444444",
                     "sandra@mail.com",
-                    23,
                     LocalDate.of(1995, Month.JANUARY, 21)
             );
 
@@ -26,7 +25,6 @@ public class PatientConfig {
                     "Kara",
                     "4444444441",
                     "kara@mail.com",
-                    23,
                     LocalDate.of(1993, Month.FEBRUARY, 21)
             );
 

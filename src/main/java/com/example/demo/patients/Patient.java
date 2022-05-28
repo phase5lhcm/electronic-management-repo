@@ -2,6 +2,7 @@ package com.example.demo.patients;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table
@@ -20,27 +21,28 @@ public class Patient {
     private String name;
     private String phone;
     private String email;
-    private Integer age;
     private LocalDate dob;
+    @Transient
+    private Integer age;
+
 
     public Patient() {
     }
 
-    public Patient(Long id, String name, String phone, String email, Integer age, LocalDate dob) {
+    public Patient(Long id, String name, String phone, String email,  LocalDate dob) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.age = age;
         this.dob = dob;
     }
 
-    public Patient(String name, String phone, String email, Integer age, LocalDate dob) {
+    public Patient(String name, String phone, String email, LocalDate dob) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.age = age;
         this.dob = dob;
+
     }
 
     public Long getId() {
@@ -75,14 +77,6 @@ public class Patient {
         this.email = email;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     public LocalDate getDob() {
         return dob;
     }
@@ -91,6 +85,17 @@ public class Patient {
         this.dob = dob;
     }
 
+    public Integer getAge() {
+
+        return Period.between(this.dob, LocalDate.now()).getYears();
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+
+
     @Override
     public String toString() {
         return "Patient{" +
@@ -98,8 +103,8 @@ public class Patient {
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", age=" + age +
                 ", dob=" + dob +
+                ", age=" + age +
                 '}';
     }
 }
