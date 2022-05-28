@@ -1,24 +1,22 @@
 package com.example.demo.patients;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 @Service
 public class PatientService {
+
+    private final PatientRepository patientRepository;
+
+    @Autowired
+    public PatientService(PatientRepository patientRepository) {
+        this.patientRepository = patientRepository;
+    }
+
     public List<Patient> getPatients() {
-        return List.of(
-                new Patient(
-                        1L,
-                        "Sandra",
-                        "4444444444",
-                        "sandra@mail.com",
-                        23,
-                        LocalDate.of(1995, Month.JANUARY, 1)
-                )
-        );
+        return patientRepository.findAll();
 
     }
 }
