@@ -67,5 +67,6 @@ public class PatientService {
             }
             patientToUpdate.setEmail(email);
         }
+        patientRepository.save(patientToUpdate);
     }
 }
